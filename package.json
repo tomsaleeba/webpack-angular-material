@@ -1,0 +1,42 @@
+{
+  "name": "webpack-angular",
+  "version": "0.0.1",
+  "description": "test angular webpack sass es6 http://www.shmck.com/webpack-angular-part-1/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --content-base app --hot",
+    "build": "webpack --display-modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merlosy/webpack-angular.git"
+  },
+  "author": "merlosy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/merlosy/webpack-angular/issues"
+  },
+  "homepage": "https://github.com/merlosy/webpack-angular#readme",
+  "devDependencies": {
+    "babel-core": "~6.3.26",
+    "babel-loader": "~6.2.0",
+    "babel-preset-es2015": "~6.3.13",
+    "babel-preset-react": "~6.3.13",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "jshint": "~2.8.0",
+    "jshint-loader": "~0.8.3",
+    "ng-annotate-loader": "~0.0.10",
+    "resolve-url-loader": "^1.4.3",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack": "~1.12.9",
+    "webpack-dev-server": "~1.14.0"
+  },
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.5",
+    "jquery": "^2.2.0"
+  }
+}
