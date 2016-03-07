@@ -3,7 +3,8 @@
 var webpack = require('webpack'),  
     path = require('path');
 
-var APP = __dirname + '/app';
+var APP = path.join(__dirname , '/app');
+// var APP = path.resolve(__dirname , '/app');
 
 module.exports = {  
     context: APP,
@@ -33,11 +34,6 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'style!css'
             },
-            // bootstrap files loader
-            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
-            { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
-            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
-            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
             // for angular ES6 files
             {
                 test: /\.js$/,

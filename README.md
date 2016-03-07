@@ -1,8 +1,8 @@
 # webpack-angular Starter
-[![devDependency Status](https://david-dm.org/merlosy/webpack-angular/dev-status.svg)](https://david-dm.org/merlosy/webpack-angular#info=devDependencies)
-[![Dependency Status](https://david-dm.org/merlosy/webpack-angular.svg)](https://david-dm.org/merlosy/webpack-angular)
+[![devDependency Status](https://david-dm.org/merlosy/webpack-angular-material/dev-status.svg)](https://david-dm.org/merlosy/webpack-angular-material#info=devDependencies)
+[![Dependency Status](https://david-dm.org/merlosy/webpack-angular-material.svg)](https://david-dm.org/merlosy/webpack-angular-material)
 
 - Webpack
-- Angular 1.4.x
-- Bootstrap 3.3.x
+- Angular 1.5.x
+- Angular Material Design
 - Babel transpiler
