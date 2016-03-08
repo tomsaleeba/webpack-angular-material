@@ -3,8 +3,8 @@
  * @param {service} $stateProvider [description]
  */
 export function HomeConfig($stateProvider, $urlRouterProvider){
-	$stateProvider.state("home", {
-        url: '/home',
+	$stateProvider.state("test", {
+        url: '/test',
         views : {
             '' : {
                 templateUrl: 'components/home/home.html',
@@ -14,8 +14,8 @@ export function HomeConfig($stateProvider, $urlRouterProvider){
         }
     });
 
-    $stateProvider.state("homeMat", {
-        url: '/homeMat',
+    $stateProvider.state("home", {
+        url: '/home',
         views : {
             '' : {
                 templateUrl: 'components/home/home-mat.html',

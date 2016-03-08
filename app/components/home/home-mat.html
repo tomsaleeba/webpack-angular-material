@@ -19,21 +19,29 @@
 
 	</md-sidenav>
 
-	<md-content flex="" layout-padding="">
+	<md-content flex="" >
+
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleLeft()" hide-gt-md="">
+					<md-icon md-svg-icon="images/menu.svg"></md-icon>
+				</md-button>
+				<h2>
+					<span>Toolbar with Icon Buttons</span>
+				</h2>
+				<span flex></span>
+
+				<md-button class="md-icon-button" aria-label="More" >
+					<md-icon md-svg-icon="images/more_vert.svg"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
 
 		<div layout="column" layout-fill="" layout-align="top center">
 			<p>
 				The left sidenav will 'lock open' on a medium (>=960px wide) device.
 			</p>
-			<p>
-				The right sidenav will focus on a specific child element.
-			</p>
-
-			<div>
-				<md-button ng-click="vm.toggleLeft()" class="md-primary" hide-gt-md="">
-				Toggle left
-				</md-button>
-			</div>
 		</div>
 
 		<div flex=""></div>
