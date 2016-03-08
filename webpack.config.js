@@ -1,10 +1,11 @@
 'use strict';  
 
 var webpack = require('webpack'),  
+    // ExtractTextPlugin = require("extract-text-webpack-plugin"),
     path = require('path');
 
 var APP = path.join(__dirname , '/app');
-// var APP = path.resolve(__dirname , '/app');
+var TARGET = path.join(__dirname , '/target');
 
 module.exports = {  
     context: APP,
@@ -13,7 +14,7 @@ module.exports = {
         vendor: ['./core/vendor.js']
   	},
   	output: {
-        path: APP,
+        path: TARGET,
         filename: 'bundle.js'
     },
 	plugins: [  
@@ -22,12 +23,14 @@ module.exports = {
             jQuery: "jquery"
         }),
     	new webpack.HotModuleReplacementPlugin(),
+        // new webpack.ExtractTextPlugin("[name].css"),
         new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
   	],
     module: {
         loaders: [
             {
                 test: /\.scss$/,
+                // loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
                 loader: 'style!css!sass'
             },
             {
@@ -38,7 +41,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'ng-annotate!babel?presets[]=es2015!jshint',
-                exclude: /node_modules|bower_components/
+                exclude: /node_modules/
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw',
+                exclude: /node_modules/
             }
         ]
     }

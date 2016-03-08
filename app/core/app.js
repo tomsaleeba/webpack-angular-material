@@ -1,6 +1,11 @@
-module.exports = function () { 
+module.exports = function (components) { 
+
 	/* Styles */
-    require('../index.scss'); 
+    require('../index.scss');
+
     /* JS */
-    require('../components/home');
+    let deps = components.app;
+    for (let i = 0; i < deps.length; i++) {
+    	require('../components/'+deps[i]+'/'+deps[i]);
+    }
 };
