@@ -1,16 +1,23 @@
 'use strict';  
 
 var webpack = require('webpack'),  
-    // ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
     path = require('path');
 
 var APP = path.join(__dirname , '/app');
+var CONFIG = path.join(__dirname , '/config/');
 var TARGET = path.join(__dirname , '/target');
+var argv = require('yargs').argv;
+var settings = {
+    environment : (!!argv.env)? argv.env : process.env.NODE_ENV || 'production'
+};
+settings.config = require(CONFIG+settings.environment);
+console.log(settings);
 
 module.exports = {  
     context: APP,
     entry: {  
-    	app: ['webpack/hot/dev-server', './core/bootstrap.js'],
+    	app: ['./core/bootstrap.js'],
         vendor: ['./core/vendor.js']
   	},
   	output: {
@@ -23,29 +30,30 @@ module.exports = {
             jQuery: "jquery"
         }),
     	new webpack.HotModuleReplacementPlugin(),
-        // new webpack.ExtractTextPlugin("[name].css"),
-        new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
-        new webpack.optimize.UglifyJsPlugin({
-            mangle: {
-                except: ['$super', '$', 'exports', 'require']
-            }
-        })
+        new ExtractTextPlugin("[name].css"),
+        new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
+        // new webpack.optimize.UglifyJsPlugin({
+        //     mangle: {
+        //         except: ['$super', '$', 'exports', 'require', 'angular']
+        //     }
+        // })
   	],
     module: {
         loaders: [
             {
                 test: /\.scss$/,
-                // loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
-                loader: 'style!css!sass'
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
+                // loader: 'style!css!sass'
             },
             {
                 test: /\.css$/,
-                loader: 'style!css'
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+                // loader: 'style!css'
             },
             // for angular ES6 files
             {
                 test: /\.js$/,
-                loader: 'uglify!ng-annotate!babel?presets[]=es2015!jshint',
+                loader: 'ng-annotate!babel?presets[]=es2015!jshint',
                 exclude: /node_modules/
             },
             {
