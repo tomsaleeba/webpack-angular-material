@@ -40,7 +40,7 @@ module.exports = {
             // for angular ES6 files
             {
                 test: /\.js$/,
-                loader: 'ng-annotate!babel?presets[]=es2015!jshint',
+                loader: 'ng-annotate!babel!jshint',
                 exclude: /node_modules/
             },
             {

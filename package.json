@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --content-base app --hot",
-    "build": "webpack --config ./webpack.production.config.js --env production --progress --profile --colors --display-modules"
+    "build": "webpack --config ./webpack.production.config.js --progress --profile",
+    "buildManual": "webpack --config ./webpack.production.config.js --env production --progress --profile --colors --display-modules"
   },
   "repository": {
     "type": "git",
