@@ -2,7 +2,8 @@
  * [HomeConfig description]
  * @param {service} $stateProvider [description]
  */
-export function HomeConfig($stateProvider, $urlRouterProvider){
+/*@ngInject*/
+function HomeConfig($stateProvider, $urlRouterProvider){
 	$stateProvider.state("test", {
         url: '/test',
         views : {
@@ -27,3 +28,4 @@ export function HomeConfig($stateProvider, $urlRouterProvider){
 
     $urlRouterProvider.otherwise('/home');
 }
+export {HomeConfig};

@@ -1,11 +1,14 @@
 'use strict';  
+/*
+@see http://d3spis3d.github.io/angular/webpack/2016/01/06/angular-es6-webpack.html
+ */
 
 var webpack = require('webpack'),  
     // ExtractTextPlugin = require("extract-text-webpack-plugin"),
     path = require('path');
 
 var APP = path.join(__dirname , '/app');
-var TARGET = path.join(__dirname , '/target');
+var TARGET = path.join(__dirname , '/tmp');
 
 module.exports = {  
     context: APP,
@@ -40,7 +43,7 @@ module.exports = {
             // for angular ES6 files
             {
                 test: /\.js$/,
-                loader: 'ng-annotate!babel!jshint',
+                loader: 'ng-annotate!babel?presets[]=es2015!jshint',
                 exclude: /node_modules/
             },
             {

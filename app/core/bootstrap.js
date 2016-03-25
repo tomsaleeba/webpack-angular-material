@@ -1,3 +1,6 @@
+/**
+ * @see  https://medium.com/@kentcdodds/misunderstanding-es6-modules-upgrading-babel-tears-and-a-solution-ad2d5ab93ce0#.grsg92yj6
+ */
 /*jshint browser:true */
 'use strict';  
 
@@ -9,11 +12,14 @@ const components = {
 	]
 };
 
-require('./vendor')();
+// require('./vendor')();
+import vendor from './vendor';
+
 require('./app')(components);
  
 // load the main app file
-var appModule = require('../index')(components);  
+const appModule = require('../index')(components);  
+
 // replaces ng-app="appName"
 angular.element(document).ready(function () {  
 	angular.bootstrap(document, [appModule.name], {

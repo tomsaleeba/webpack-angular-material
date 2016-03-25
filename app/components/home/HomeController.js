@@ -1,7 +1,8 @@
 /**
  * @type {controller}
  */
-export class HomeController {
+/*@ngInject*/
+class HomeController {
 
 	constructor($log){
 		$log.debug("HomeController");
@@ -12,3 +13,5 @@ export class HomeController {
 		this.message = mess;
 	}
 }
+
+export {HomeController};

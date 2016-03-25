@@ -1,5 +1,5 @@
-
-export class AppController {
+/*@ngInject*/
+class AppController {
 
 	constructor($scope, $timeout, $mdSidenav, $mdMedia, $log){
     this.$mdMedia = $mdMedia;
@@ -53,7 +53,8 @@ export class AppController {
 
 }
 
-export class LeftController{
+/*@ngInject*/
+class LeftController{
 
 	constructor($mdSidenav, $log) {
 		this.$mdSidenav = $mdSidenav;
@@ -67,3 +68,5 @@ export class LeftController{
     });
 	}
 }
+
+export { AppController, LeftController};

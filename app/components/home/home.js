@@ -2,6 +2,8 @@
 import { HomeConfig } from './routes';
 
 import { HomeController } from './HomeController';
+// import { AppController } from './AppController';
+// import { LeftController } from './LeftController';
 import { AppController, LeftController } from './HomeMatController';
 
 angular
