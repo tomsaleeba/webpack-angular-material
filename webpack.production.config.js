@@ -75,34 +75,31 @@ module.exports = {
         })
     ],
     module: {
-        preLoaders: [],
-        loaders: [
+        rules: [
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss', 'sass')
-                // loader: 'style!css!sass'
+                loader: ExtractTextPlugin.extract('style-loader-loader', 'css-loader-loader?sourceMap!postcss-loader', 'sass-loader')
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
-                // loader: 'style!css'
+                loader: ExtractTextPlugin.extract('style-loader-loader', 'css-loader-loader?sourceMap!postcss-loader')
             },
             {
                 // ASSET LOADER
                 // Reference: https://github.com/webpack/file-loader
                 // You can add here any file extension you want to get copied to your output
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-                loader: 'file'
+                loader: 'file-loader'
             },
             // for angular ES6 files
             {
                 test: /\.js$/,
-                loader: 'ng-annotate?add=true!babel!jshint',
+                loader: 'ng-annotate-loader?add=true!babel-loader!jshint-loader',
                 exclude: /node_modules/
             },
             {
                 test: /\.html$/,
-                loader: 'raw',
+                loader: 'raw-loader',
                 exclude: /node_modules/
             }
         ]

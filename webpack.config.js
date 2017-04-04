@@ -4,7 +4,6 @@
  */
 
 var webpack = require('webpack'),  
-    // ExtractTextPlugin = require("extract-text-webpack-plugin"),
     path = require('path');
 
 var APP = path.join(__dirname , '/app');
@@ -13,8 +12,8 @@ var TARGET = path.join(__dirname , '/tmp');
 module.exports = {  
     context: APP,
     entry: {  
-    	app: ['webpack/hot/dev-server', './core/bootstrap.js'],
-        vendor: ['./core/vendor.js']
+        app: './core/bootstrap.js',
+        vendor: './core/vendor.js'
   	},
   	output: {
         path: TARGET,
@@ -25,30 +24,28 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         }),
-    	new webpack.HotModuleReplacementPlugin(),
-        // new webpack.ExtractTextPlugin("[name].css"),
-        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
+        new webpack.NamedModulesPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "vendor.bundle.js"})
   	],
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.scss$/,
-                // loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
-                loader: 'style!css!sass'
+                loader: 'style-loader!css-loader!sass-loader'
             },
             {
                 test: /\.css$/,
-                loader: 'style!css'
+                loader: 'style-loader!css-loader'
             },
             // for angular ES6 files
             {
                 test: /\.js$/,
-                loader: 'ng-annotate!babel?presets[]=es2015!jshint',
+                loader: 'ng-annotate-loader!babel-loader?presets[]=es2015!jshint-loader',
                 exclude: /node_modules/
             },
             {
                 test: /\.html$/,
-                loader: 'raw',
+                loader: 'raw-loader',
                 exclude: /node_modules/
             }
         ]
