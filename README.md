@@ -4,7 +4,7 @@
 
 ## Features
 
-- Webpack
+- Webpack 2
 - Angular 1.5.x
 - Angular Material Design
 - ES6 with Babel transpiler
@@ -22,4 +22,8 @@ npm run start
 - Build sources (generate a /target folder)
 ```
 npm run build
+```
+- Serve up the /target folder to test the production build (requires docker)
+```
+docker run -v $(pwd)/target:/usr/share/nginx/html:ro --rm -p 8080:80 nginx
 ```
