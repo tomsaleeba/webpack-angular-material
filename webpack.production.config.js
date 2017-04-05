@@ -1,4 +1,4 @@
-'use strict';  
+'use strict';
 /*
 https://github.com/preboot/angular-webpack/blob/master/webpack.config.js
  */
@@ -10,54 +10,43 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var path = require('path');
-var APP = path.join(__dirname , '/app');
-var CONFIG = path.join(__dirname , '/config/');
-var TARGET = path.join(__dirname , '/target');
+var APP = path.join(__dirname, '/app');
+var CONFIG = path.join(__dirname, '/config/');
+var TARGET = path.join(__dirname, '/target');
 
 // set environment config
 var argv = require('yargs').argv;
 var settings = {
-    environment : (!!argv.env)? argv.env : process.env.NODE_ENV || 'production'
+    environment: (!!argv.env) ? argv.env : process.env.NODE_ENV || 'production'
 };
-settings.config = require(CONFIG+settings.environment);
-console.log(settings);
+settings.config = require(CONFIG + settings.environment);
+console.log('Config settings: ' + JSON.stringify(settings));
 
-module.exports = {  
+module.exports = {
     context: APP,
     devtool: 'source-map',
-    entry: {  
-    	app: ['./core/bootstrap.js', './index.js'],
+    entry: {
+        app: ['./core/bootstrap.js', './index.js'],
         vendor: ['./core/vendor.js']
-  	},
-  	output: {
+    },
+    output: {
         path: TARGET,
         publicPath: '/',
         filename: '[name].[hash].js',
         chunkFilename: '[name].[hash].js'
     },
-	plugins: [  
+    plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
         }),
-    	new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: './index.html',
             inject: 'body'
         }),
-        new ExtractTextPlugin('[name].[hash].css', {disable: false}),
-        // new webpack.optimize.CommonsChunkPlugin('[name].[hash].js'),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     mangle: {
-        //         except: ['$super', '$inject', '$', 'exports', 'require', 'angular']
-        //     }
-        // })
-        // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
+        new ExtractTextPlugin({ filename: '[name].[hash].css', disable: false }),
         // Only emit files when there are no errors
-        new webpack.NoErrorsPlugin(),
-
-        // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-        // Dedupe modules in the output
-        new webpack.optimize.DedupePlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
 
         // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
         // Minify all javascript, switch loaders to minimizing mode
@@ -67,22 +56,26 @@ module.exports = {
         // Reference: https://github.com/kevlened/copy-webpack-plugin
         new CopyWebpackPlugin([{
             from: APP
-        }])
-  	],
-    postcss : [
-        autoprefixer({
-            browsers: ['last 2 version']
+        }]),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [
+                    autoprefixer({
+                        browsers: ['last 2 version']
+                    })
+                ]
+            }
         })
     ],
     module: {
         rules: [
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader-loader', 'css-loader-loader?sourceMap!postcss-loader', 'sass-loader')
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader?sourceMap!postcss-loader', 'sass-loader'] })
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style-loader-loader', 'css-loader-loader?sourceMap!postcss-loader')
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?sourceMap!postcss-loader' })
             },
             {
                 // ASSET LOADER
@@ -104,5 +97,5 @@ module.exports = {
             }
         ]
     }
-    
+
 }
